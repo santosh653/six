@@ -1,3 +1,14 @@
+# ----------------------------------------------------------------------------
+#
+# Package             : six
+# Source Repo         : https://github.com/benjaminp/six
+# Travis Job Link     : https://travis-ci.com/github/santosh653/six
+# Created travis.yml  : No
+# Maintainer          : Santosh Kulkarni <santoshkulkarni70@gmail.com>
+#
+# Script License      : Apache License, Version 2 or later
+#
+# ----------------------------------------------------------------------------
 arch:
 - amd64
 - ppc64le
@@ -14,6 +25,14 @@ python:
 - nightly
 - pypy
 - pypy3
+#Excluding the non supported versions on power.
+jobs:
+ exclude:
+  - python: pypy
+    arch: ppc64le
+  - python: pypy3
+    arch: ppc64le
+
 install:
 - pip install --upgrade --force-reinstall "setuptools; python_version != '3.3'" "setuptools < 40; python_version == '3.3'"
 - pip uninstall --yes six || true
@@ -31,6 +50,10 @@ jobs:
   include:
   - python: 3.3
     dist: trusty
+    arch: amd64
+  - python: 3.3
+    dist: trusty
+    arch: ppc64le
   - stage: upload new version of python package to PYPI (only for tagged commits)
     python: *mainstream_python
     install: skip
