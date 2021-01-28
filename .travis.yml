@@ -25,7 +25,7 @@ python:
 - nightly
 - pypy
 - pypy3
-#Excluding the non supported versions on power.
+
 jobs:
  exclude:
   - python: pypy
