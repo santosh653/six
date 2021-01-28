@@ -46,18 +46,13 @@ jobs:
   - python: 3.3
     dist: trusty
     arch: amd64
-  - python: 3.3
-    dist: trusty
-    arch: ppc64le
-
-jobs:
- exclude:
+  exclude:
   - python: pypy
     arch: ppc64le
   - python: pypy3
     arch: ppc64le
 
-- stage: upload new version of python package to PYPI (only for tagged commits)
+  - stage: upload new version of python package to PYPI (only for tagged commits)
     python: *mainstream_python
     install: skip
     script: skip
